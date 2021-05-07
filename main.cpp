@@ -32,48 +32,40 @@ void Im(int* arreglo, int size) {
 	}
 }
 
-void Ejercicio1() {
-	int size=0;
+void Ejercicio1(char* arreglo,int size) {
 
-	/*char a =1;
-	char b =2;
-	string c = a;
-	string d = b;
-	string c.append(d);
-	cout<<c;
-	*/
+	int repeticiones [size];
+	char caracteres [size];
 	
-	
-	cout<<"Ingrese el tamano del arreglo:";
-	cin>>size;
-
-	char* arreglo = new char[size];
-
-	int repeticiones [size/2];
-	char caracteres [size/2];
-
-	int contadorCaracter=0;
 	int contadorRepeticiones=0;
-
+	int contadorCaracter=0;
 
 	for(int i=0; i<size; i++) {
 		cout<<"Ingrese el caracter:";
 		cin>> arreglo[i];
+		repeticiones[i]=0;
 	}
-
+	
 	for(int i=0; i<size; i++) {
-		if(i%2 == 0) {
-			int val = arreglo[i] - 48;
-			repeticiones[contadorRepeticiones] = val;
-			contadorRepeticiones++;
+		
+		if( (arreglo[i]>=48) && (arreglo[i]<=57) ) { //i=0 i=1
+			if( (arreglo[i+1]>=48) && (arreglo[i+1]<=57) ) { //i=1 i=2
+				int val = arreglo[i] - 48;
+				repeticiones[contadorRepeticiones] = ( repeticiones[contadorRepeticiones] * 10) + val;
+				cout<<"Siguiente num"<<repeticiones[contadorRepeticiones]<<endl;
+			} else {
+				int val = arreglo[i] - 48;
+				repeticiones[contadorRepeticiones] = ( repeticiones[contadorRepeticiones] * 10) + val;
+				contadorRepeticiones++;
+			}
 		} else {
 			caracteres[contadorCaracter] = arreglo[i];
 			contadorCaracter++;
 		}
+		
 	}
-	
-	ImprimirArr(arreglo,size);
 
+	ImprimirArr(arreglo,size);
 
 	cout<<endl<<endl;
 	for(int i=0; i<size/2; i++) {
@@ -84,7 +76,7 @@ void Ejercicio1() {
 	}
 
 	delete []arreglo;
-	
+
 }
 
 void LlenarMat(char** matrix, int sizeA,int sizeB) {
@@ -169,7 +161,12 @@ void Ejercicio2() {
 }
 
 void Ejercicio3() {
-
+	int size=0;
+	cout<<"Ingrese el tamano del arreglo:";
+	cin>>size;
+	char* arreglo = new char[size];
+	Ejercicio1(arreglo,size);
+	Ejercicio2();
 }
 
 int main(int argc, char** argv) {
@@ -181,7 +178,11 @@ int main(int argc, char** argv) {
 		opcion = menu();
 		switch(opcion) {
 			case 1: {
-				Ejercicio1();
+				int size=0;
+				cout<<"Ingrese el tamano del arreglo:";
+				cin>>size;
+				char* arreglo = new char[size];
+				Ejercicio1(arreglo,size);
 			}
 			break;
 			case 2: {

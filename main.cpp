@@ -1,6 +1,7 @@
 #include <iostream>
 #include <random>
 #include <ctime>
+#include <string>
 using namespace std;
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -18,6 +19,14 @@ int menu() {
 }
 
 void ImprimirArr(char* arreglo, int size) {
+	cout<<"[";
+	for(int i=0; i<size; i++) {
+		cout<<"'"<< arreglo[i] <<"' ,";
+	}
+	cout<<"]";
+}
+
+void Im(int* arreglo, int size) {
 	for(int i=0; i<size; i++) {
 		cout<<arreglo[i]<<" ";
 	}
@@ -25,6 +34,16 @@ void ImprimirArr(char* arreglo, int size) {
 
 void Ejercicio1() {
 	int size=0;
+
+	/*char a =1;
+	char b =2;
+	string c = a;
+	string d = b;
+	string c.append(d);
+	cout<<c;
+	*/
+	
+	
 	cout<<"Ingrese el tamano del arreglo:";
 	cin>>size;
 
@@ -52,6 +71,7 @@ void Ejercicio1() {
 			contadorCaracter++;
 		}
 	}
+	
 	ImprimirArr(arreglo,size);
 
 
@@ -64,6 +84,7 @@ void Ejercicio1() {
 	}
 
 	delete []arreglo;
+	
 }
 
 void LlenarMat(char** matrix, int sizeA,int sizeB) {
@@ -72,7 +93,6 @@ void LlenarMat(char** matrix, int sizeA,int sizeB) {
 			matrix[i][j] ='-';
 		}
 	}
-
 }
 
 void ImprimirMat(char** matrix, int sizeA,int sizeB) {
@@ -87,27 +107,22 @@ void ImprimirMat(char** matrix, int sizeA,int sizeB) {
 }
 
 char** Obstaculos(char** matriz,int obstaculos,int filas, int columnas) {
-	int fil[1000];
-	int col[1000];
+	int fil[obstaculos];
+	int col[obstaculos];
 	for(int i=0; i < obstaculos; i++) {
 		int ran1 = rand() % filas;
 		int ran2 = rand() % columnas;
-		for(int i=0; i<1000; i++) {
-			while((ran1 == fil[i]) && (ran2 == col[i])) {
+		for(int i=0; i<obstaculos; i++) {
+			while(matriz[ran1][ran2]=='#') {
 				ran1 = rand() % filas;
 				ran2 = rand() % columnas;
 			}
-			fil[i]=ran1;
+			fil[i] = ran1;
 			col[i] = ran2;
 		}
-
-		char m = matriz[ran1][ran2];
-		int letra = '-';
-
-		if(matriz[ran1][ran2]==letra) {
-			matriz[ran1][ran2]='#';
-		}
+		matriz[ran1][ran2]='#';
 	}
+	cout<<endl;
 	return matriz;
 }
 
@@ -127,8 +142,10 @@ void Ejercicio2() {
 	}
 
 	LlenarMat(matriz,filas,columnas);
-	ImprimirMat(matriz,filas,columnas);
+	//ImprimirMat(matriz,filas,columnas);
+
 	Obstaculos(matriz,obstaculos,filas,columnas);
+
 	cout<<"Matriz final"<<endl;
 	ImprimirMat(matriz,filas,columnas);
 //limpiar memoria

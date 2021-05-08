@@ -36,7 +36,7 @@ void Ejercicio1(char* arreglo,int size) {
 
 	int repeticiones [size];
 	char caracteres [size];
-	
+
 	int contadorRepeticiones=0;
 	int contadorCaracter=0;
 
@@ -45,14 +45,12 @@ void Ejercicio1(char* arreglo,int size) {
 		cin>> arreglo[i];
 		repeticiones[i]=0;
 	}
-	
 	for(int i=0; i<size; i++) {
-		
 		if( (arreglo[i]>=48) && (arreglo[i]<=57) ) { //i=0 i=1
 			if( (arreglo[i+1]>=48) && (arreglo[i+1]<=57) ) { //i=1 i=2
 				int val = arreglo[i] - 48;
 				repeticiones[contadorRepeticiones] = ( repeticiones[contadorRepeticiones] * 10) + val;
-				cout<<"Siguiente num"<<repeticiones[contadorRepeticiones]<<endl;
+				//cout<<"Siguiente num"<<repeticiones[contadorRepeticiones]<<endl;
 			} else {
 				int val = arreglo[i] - 48;
 				repeticiones[contadorRepeticiones] = ( repeticiones[contadorRepeticiones] * 10) + val;
@@ -62,7 +60,6 @@ void Ejercicio1(char* arreglo,int size) {
 			caracteres[contadorCaracter] = arreglo[i];
 			contadorCaracter++;
 		}
-		
 	}
 
 	ImprimirArr(arreglo,size);
@@ -118,7 +115,8 @@ char** Obstaculos(char** matriz,int obstaculos,int filas, int columnas) {
 	return matriz;
 }
 
-void Ejercicio2() {
+char** Ejercicio2() {
+
 	int filas,columnas;
 	cout<<"Ingrese las filas:";
 	cin>>filas;
@@ -140,6 +138,7 @@ void Ejercicio2() {
 
 	cout<<"Matriz final"<<endl;
 	ImprimirMat(matriz,filas,columnas);
+	return matriz;
 //limpiar memoria
 	for(int i = 0; i<filas; i++) {
 		if(matriz[i]) {
@@ -160,13 +159,121 @@ void Ejercicio2() {
 	}
 }
 
+char** MatrizEjercicio3(char** matriz,int filas,int columnas,int obstaculos) {
+	LlenarMat(matriz,filas,columnas);
+	//ImprimirMat(matriz,filas,columnas);
+	Obstaculos(matriz,obstaculos,filas,columnas);
+	cout<<"Matriz final"<<endl;
+	ImprimirMat(matriz,filas,columnas);
+	return matriz;
+}
+
+void Juego(char** matriz, char* arreglo,int size,int filas,int columnas) {
+	int contador=0;
+	while(contador<size) {
+		for(int i=0; i<filas; i++) {
+			for(int j=0; j<columnas; j++) {
+				if(contador == 0) {
+					switch(arreglo[i]) {
+						//UDLR
+						case 'U': {
+							matriz[i][j] = 186;
+						}
+						break;
+						case 'D': {
+							matriz[i][j] = 186;
+						}
+						break;
+						case 'L': {
+							matriz[i][j] = 205;
+						}
+						break;
+						case 'R': {
+							matriz[i][j] = 205;
+						}
+						break;
+					}
+				} else {
+					switch(arreglo[i]) {
+						//UDLR
+						case 'U': {
+							matriz[i][j] = 186;
+						}
+						break;
+						case 'D': {
+							matriz[i][j] = 186;
+						}
+						break;
+						case 'L': {
+							matriz[i][j] = 205;
+						}
+						break;
+						case 'R': {
+							matriz[i][j] = 205;
+						}
+						break;
+					}
+				}
+			}
+		}
+
+
+
+
+	}
+
+}
+
 void Ejercicio3() {
 	int size=0;
 	cout<<"Ingrese el tamano del arreglo:";
 	cin>>size;
 	char* arreglo = new char[size];
 	Ejercicio1(arreglo,size);
-	Ejercicio2();
+	cout<<endl;
+
+
+	int filas,columnas;
+	cout<<"Ingrese las filas:";
+	cin>>filas;
+	cout<<"Ingrese las columnas:";
+	cin>>columnas;
+	cout<<"Ingrese la cantidad de obstaculos:";
+	int obstaculos=0;
+	cin>>obstaculos;
+
+	char** matriz = 0;
+	matriz=new char*[filas];
+	for(int i=0; i<filas; i++) {
+		matriz[i] = new char[columnas];
+	}
+
+
+	MatrizEjercicio3(matriz,filas,columnas,obstaculos);
+	Juego(matriz,arreglo,size,filas,columnas);
+	
+	ImprimirMat(matriz,filas,columnas);
+	
+
+	//limpiar memoria
+	for(int i = 0; i<filas; i++) {
+		if(matriz[i]) {
+			delete[] matriz[i];
+			matriz[i] = 0; //asignar null
+		}
+	}
+
+	if( matriz != NULL ) {
+		delete[] matriz;
+		matriz = 0;
+	}
+
+	if(matriz) {
+		delete[] matriz;
+		matriz = 0;
+	}
+
+
 }
 
 int main(int argc, char** argv) {

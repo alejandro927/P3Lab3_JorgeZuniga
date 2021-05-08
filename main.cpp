@@ -120,10 +120,22 @@ char** Ejercicio2() {
 	int filas,columnas;
 	cout<<"Ingrese las filas:";
 	cin>>filas;
+	while(filas<0){
+		cout<<"No se aceptan negativos Ingrese una nueva fila:";
+		cin>>filas;
+	}
 	cout<<"Ingrese las columnas:";
 	cin>>columnas;
+	while(columnas<0){
+		cout<<"No se aceptan negativos Ingrese una nueva columna:";
+		cin>>columnas;
+	}
 	cout<<"Ingrese la cantidad de obstaculos:";
 	int obstaculos=0;
+	while(obstaculos<0){
+		cout<<"No se aceptan negativos Ingrese nuevo obstaculo:";
+		cin>>obstaculos;
+	}
 	cin>>obstaculos;
 	char** matriz = 0;
 	matriz=new char*[filas];
@@ -168,13 +180,13 @@ char** MatrizEjercicio3(char** matriz,int filas,int columnas,int obstaculos) {
 	return matriz;
 }
 
-void Juego(char** matriz, char* arreglo,int size,int filas,int columnas,int filasM,int ColumnasM) {
+void Juego(char** matriz, char* arreglo,int size,int filas,int columnas,int filasM,int columnasM) {
 
 	int contador=0;
 	while(contador<size) {
 
 		for(int i=0; i<filasM; i++) {
-			for(int j=0; j<columnasM; j++) {
+			for(int j=0; j < columnasM; j++) {
 
 				if(contador == 0) {
 					switch(arreglo[i]) {
@@ -221,10 +233,7 @@ void Juego(char** matriz, char* arreglo,int size,int filas,int columnas,int fila
 				}
 			}
 		}
-
-
 	contador++;
-
 	}
 
 }
@@ -233,25 +242,44 @@ void Ejercicio3() {
 	int size=0;
 	cout<<"Ingrese el tamano del arreglo:";
 	cin>>size;
+	while(size<0){
+		cout<<"No se aceptan negativos Ingrese nuevo tamano:";
+		cin>>size;
+	}
 	char* arreglo = new char[size];
 	Ejercicio1(arreglo,size);
 	cout<<endl;
-
+	
 
 	int filas,columnas;
 	cout<<"Ingrese las filas:";
 	cin>>filas;
+	while(filas<0){
+		cout<<"No se aceptan negativos Ingrese una nueva filas:";
+		cin>>filas;
+	}
+	
 	cout<<"Ingrese las columnas:";
 	cin>>columnas;
+	while(columnas<0){
+		cout<<"No se aceptan negativos Ingrese nuevo columna:";
+		cin>>columnas;
+	}
+	
 	cout<<"Ingrese la cantidad de obstaculos:";
 	int obstaculos=0;
 	cin>>obstaculos;
+	while(obstaculos<0){
+		cout<<"No se aceptan negativos Ingrese nuevo obstaculo:";
+		cin>>obstaculos;
+	}
 	
 	int filaC,columnaC;
 	cout<<"Ingrese las fila en la que desea comenzar:";
 	cin>>filaC;
 	cout<<"Ingrese la columna en la que desea comenzar:";
 	cin>>columnaC;
+	
 	char** matriz = 0;
 	matriz=new char*[filas];
 	for(int i=0; i<filas; i++) {
@@ -261,7 +289,7 @@ void Ejercicio3() {
 
 	MatrizEjercicio3(matriz,filas,columnas,obstaculos);
 	Juego(matriz,arreglo,size,filaC,columnaC,filas,columnas);
-
+	cout<<endl<<endl<<"La Matriz final es:"<<endl;
 	ImprimirMat(matriz,filas,columnas);
 
 
@@ -298,6 +326,10 @@ int main(int argc, char** argv) {
 				int size=0;
 				cout<<"Ingrese el tamano del arreglo:";
 				cin>>size;
+				while(size<0){
+					cout<<"No se aceptan negativos Ingrese un nuevo tamano:";
+					cin>>size;
+				}
 				char* arreglo = new char[size];
 				Ejercicio1(arreglo,size);
 			}

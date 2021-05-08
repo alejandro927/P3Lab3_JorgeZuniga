@@ -168,28 +168,33 @@ char** MatrizEjercicio3(char** matriz,int filas,int columnas,int obstaculos) {
 	return matriz;
 }
 
-void Juego(char** matriz, char* arreglo,int size,int filas,int columnas) {
+void Juego(char** matriz, char* arreglo,int size,int filas,int columnas,int filasM,int ColumnasM) {
+
 	int contador=0;
 	while(contador<size) {
-		for(int i=0; i<filas; i++) {
-			for(int j=0; j<columnas; j++) {
+
+		for(int i=0; i<filasM; i++) {
+			for(int j=0; j<columnasM; j++) {
+
 				if(contador == 0) {
 					switch(arreglo[i]) {
 						//UDLR
 						case 'U': {
-							matriz[i][j] = 186;
+							
+								matriz[filas][columnas] = 186;
+							
 						}
 						break;
 						case 'D': {
-							matriz[i][j] = 186;
+							matriz[filas][columnas] = 186;
 						}
 						break;
 						case 'L': {
-							matriz[i][j] = 205;
+							matriz[filas][columnas] = 205;
 						}
 						break;
 						case 'R': {
-							matriz[i][j] = 205;
+							matriz[filas][columnas] = 205;
 						}
 						break;
 					}
@@ -197,19 +202,19 @@ void Juego(char** matriz, char* arreglo,int size,int filas,int columnas) {
 					switch(arreglo[i]) {
 						//UDLR
 						case 'U': {
-							matriz[i][j] = 186;
+							matriz[filas][columnas] = 186;
 						}
 						break;
 						case 'D': {
-							matriz[i][j] = 186;
+							matriz[filas][columnas] = 186;
 						}
 						break;
 						case 'L': {
-							matriz[i][j] = 205;
+							matriz[filas][columnas] = 205;
 						}
 						break;
 						case 'R': {
-							matriz[i][j] = 205;
+							matriz[filas][columnas] = 205;
 						}
 						break;
 					}
@@ -218,7 +223,7 @@ void Juego(char** matriz, char* arreglo,int size,int filas,int columnas) {
 		}
 
 
-
+	contador++;
 
 	}
 
@@ -241,7 +246,12 @@ void Ejercicio3() {
 	cout<<"Ingrese la cantidad de obstaculos:";
 	int obstaculos=0;
 	cin>>obstaculos;
-
+	
+	int filaC,columnaC;
+	cout<<"Ingrese las fila en la que desea comenzar:";
+	cin>>filaC;
+	cout<<"Ingrese la columna en la que desea comenzar:";
+	cin>>columnaC;
 	char** matriz = 0;
 	matriz=new char*[filas];
 	for(int i=0; i<filas; i++) {
@@ -250,10 +260,10 @@ void Ejercicio3() {
 
 
 	MatrizEjercicio3(matriz,filas,columnas,obstaculos);
-	Juego(matriz,arreglo,size,filas,columnas);
-	
+	Juego(matriz,arreglo,size,filaC,columnaC,filas,columnas);
+
 	ImprimirMat(matriz,filas,columnas);
-	
+
 
 	//limpiar memoria
 	for(int i = 0; i<filas; i++) {
